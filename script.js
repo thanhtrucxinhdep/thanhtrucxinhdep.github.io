@@ -91,15 +91,10 @@ textEl.onchange  = (e) => {
 }
 
 function getInfo(value) {
-    fetch(`https://api.tracau.vn/WBBcwnwQpV89/s/${value}/en`, 
-        {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        mode: 'cors'
-        }
-         )
+
+    var proxy = 'http://cors-anywhere.herokuapp.com/'
+    var api = `${proxy}https://api.tracau.vn/WBBcwnwQpV89/s/${value}/en`
+    fetch(api, {mode: 'cors'})
     .then(response => response.json())
     .then(result => {
         return result.sentences.map(sentence => {
