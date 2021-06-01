@@ -83,31 +83,28 @@ renderAntonym()
 
 let textEl = document.querySelector('.search-bar input[type ="text"]')
 let sentenceEl = document.querySelector('.sentence-searched')
-let button = document.querySelector('button')
+
 textEl.onchange  = (e) => {
     
-    button.onclick = getInfo(e.target.value)
-    
-}
-
-function getInfo(value) {
-
-    var proxy = 'http://cors-anywhere.herokuapp.com/'
-    var api = `${proxy}https://api.tracau.vn/WBBcwnwQpV89/s/${value}/en`
-    fetch(api, {mode: 'cors'})
-    .then(response => response.json())
-    .then(result => {
-        return result.sentences.map(sentence => {
-            return `<div class="sentence">
-                        <div class="vietnamese">
-                            <p> ${sentence.fields.vi}
+        var proxy = 'http://cors-anywhere.herokuapp.com/'
+        var api = `${proxy}https://api.tracau.vn/WBBcwnwQpV89/s/${e.target.value}/en`
+        fetch(api, {mode: 'cors'})
+        .then(response => response.json())
+        .then(result => {
+            return result.sentences.map(sentence => {
+                return `<div class="sentence">
+                            <div class="vietnamese">
+                                <p> ${sentence.fields.vi}</p>
+                            </div>
+                            <div class="english">
+                                <p class="sentencemargin" >${sentence.fields.en}</p>
+                            </div>
                         </div>
-                        <div class="english">
-                            <p> ${sentence.fields.en}
-                        </div>
-                    </div>
-            `
+                `
+            })
         })
-    })
-    .then(result => sentenceEl.innerHTML = result.join(''))
+        .then(result => sentenceEl.innerHTML = result.join(''))
 }
+    
+
+
