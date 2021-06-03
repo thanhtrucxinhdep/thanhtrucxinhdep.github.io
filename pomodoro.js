@@ -5,7 +5,7 @@ let minuteValue;
 let calcTime;
 let audio = document.querySelector('.audio audio')
 let startBtn = document.querySelector('.end .start')
-
+let sound = new Audio('https://nhacchuong123.net/nhac-chuong/nhac-hay/B%C3%A1o%20Th%E1%BB%A9c%20kh%C3%B4ng%20d%E1%BA%ADy%20kh%C3%B4ng%20xong-nhacchuong123.net.mp3')
 
 
 
@@ -67,10 +67,10 @@ function getSecond() {
         second.innerHTML = secondValue
     }
     if (minuteValue === 0 && secondValue === 0 ){
-        audio.play()
+        sound.play()
         clearInterval(calcTime)
         setTimeout(function() {
-            audio.pause()
+            sound.pause()
         },10000)
     }
 }
