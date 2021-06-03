@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pomodorostyle.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="pomodoro-container">
+        <div class="pomodoro-heading">
+            <button class="button--change active">
+                Pomodoro
+            </button>
+            <button class="button--change">
+                Short Break
+            </button>
+            <button class="button--change">
+                Long Break
+            </button>
+            <div class="line"></div>
+        </div>
+        <div class="pomodoro-content">
+            <span>25</span>
+            <span>:</span>
+            <span>00</span>
+        </div>
+        <div class="audio">
+            <audio src="https://nhacchuong123.net/nhac-chuong/nhac-hay/B%C3%A1o%20Th%E1%BB%A9c%20kh%C3%B4ng%20d%E1%BA%ADy%20kh%C3%B4ng%20xong-nhacchuong123.net.mp3"></audio>
+        </div>
+        <div class="end">
+            <button class="start button--pomodoro">Start</button>
+        </div>
+        <div class="todolist">
+            <a href="index.html" class="start button--pomodoro">Daily Task</a>
+        </div>
+    </div>
+    <script src="pomodoro.js"></script>
+</body>
+</html>
