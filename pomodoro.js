@@ -24,8 +24,8 @@ options.forEach(optionBtn => {
         line.style.left = optionBtn.offsetLeft + 'px'
         switch (e.target.innerText) {
             case 'Short Break':
-                minute.innerHTML = '00'
-                second.innerHTML = '10'
+                minute.innerHTML = '05'
+                second.innerHTML = '00'
                 clearInterval(calcTime)
                 break;
             case 'Long Break':
