@@ -26,14 +26,19 @@ options.forEach(optionBtn => {
             case 'Short Break':
                 minute.innerHTML = '05'
                 second.innerHTML = '00'
+                clearInterval(calcTime)
                 break;
             case 'Long Break':
-                minute.innerHTML = '1'
+                minute.innerHTML = '15'
                 second.innerHTML = '00'
+                clearInterval(calcTime)
+
                 break;
             default:
                 minute.innerHTML = '25'
                 second.innerHTML = '00'
+                clearInterval(calcTime)
+
         }
     }
 })
@@ -46,7 +51,12 @@ function getSecond() {
         secondValue = 60;
         second.innerHTML = secondValue;
         if (minuteValue !== 0) {
-            minute.innerHTML = minuteValue - 1
+            minuteValue -= 1
+            if (minuteValue < 10) {
+                minute.innerHTML = '0' + minuteValue
+            } else {
+                minute.innerHTML = minuteValue
+            }
         }
     }
     secondValue -= 1;
@@ -56,7 +66,6 @@ function getSecond() {
     } else {
         second.innerHTML = secondValue
     }
-    console.log(secondValue, '123')
     if (minuteValue === 0 && secondValue === 0 ){
         audio.play()
         clearInterval(calcTime)
@@ -65,7 +74,14 @@ function getSecond() {
         },10000)
     }
 }
-
+let index = 1;
 startBtn.onclick = () => {
-    calcTime = setInterval(getSecond, 1000)
+    if (index % 2 === 0){
+        clearInterval(calcTime)
+        startBtn.innerHTML = 'Start'
+    } else {
+        startBtn.innerHTML = 'Resume'
+        calcTime = setInterval(getSecond, 1000)
+    }
+    index++
 }
