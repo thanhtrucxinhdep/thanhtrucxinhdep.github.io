@@ -1,87 +1,75 @@
-let minute = document.querySelector('.pomodoro-content span:first-child')
-let second = document.querySelector('.pomodoro-content span:last-child')
-let secondValue;
-let minuteValue;
-let calcTime;
-let audio = document.querySelector('.audio audio')
-let startBtn = document.querySelector('.end .start')
+
+let todoList = [
+
+]
 
 
 
+let textInput = document.querySelector('.textinput input[type="text"]')
+let TODO_KEY = 'TODO_APP'
+let addBtn = document.querySelector('.textinput button')
+let content = document.querySelector('.content')
+let Data = JSON.parse(localStorage.getItem(TODO_KEY)) || []
 
-let line = document.querySelector('.line')
-let options = document.querySelectorAll('.pomodoro-heading button')
-
-line.style.width = options[0].offsetWidth + 'px'
-line.style.left = options[0].offsetLeft + 'px'
-
-options.forEach(optionBtn => {
-    optionBtn.onclick = (e) => {
-        document.querySelector('.button--change.active').classList.remove('active')
-        optionBtn.classList.add('active')
-
-        line.style.width = optionBtn.offsetWidth + 'px'
-        line.style.left = optionBtn.offsetLeft + 'px'
-        switch (e.target.innerText) {
-            case 'Short Break':
-                minute.innerHTML = '05'
-                second.innerHTML = '00'
-                clearInterval(calcTime)
-                break;
-            case 'Long Break':
-                minute.innerHTML = '15'
-                second.innerHTML = '00'
-                clearInterval(calcTime)
-
-                break;
-            default:
-                minute.innerHTML = '25'
-                second.innerHTML = '00'
-                clearInterval(calcTime)
-
-        }
-    }
-})
-
-
-function getSecond() {
-    minuteValue = parseInt(minute.innerText)
-    secondValue = parseInt(second.innerText)
-    if (secondValue === 0) {
-        secondValue = 60;
-        second.innerHTML = secondValue;
-        if (minuteValue !== 0) {
-            minuteValue -= 1
-            if (minuteValue < 10) {
-                minute.innerHTML = '0' + minuteValue
-            } else {
-                minute.innerHTML = minuteValue
-            }
-        }
-    }
-    secondValue -= 1;
-
-    if (secondValue < 10){
-        second.innerHTML = '0' + secondValue 
-    } else {
-        second.innerHTML = secondValue
-    }
-    if (minuteValue === 0 && secondValue === 0 ){
-        audio.play()
-        clearInterval(calcTime)
-        setTimeout(function() {
-            audio.pause()
-        },10000)
-    }
+textInput.onchange = (e) => {
+    todoList.push( {name: e.target.value, isCompleted: false } )
+    e.target.value = ''
 }
-let index = 1;
-startBtn.onclick = () => {
-    if (index % 2 === 0){
-        clearInterval(calcTime)
-        startBtn.innerHTML = 'Start'
-    } else {
-        startBtn.innerHTML = 'Resume'
-        calcTime = setInterval(getSecond, 1000)
-    }
-    index++
+
+function render() {
+    todoList = JSON.parse(localStorage.getItem(TODO_KEY)) || []
+    let result = todoList.map((todo,index) => `
+    <div class="todo-list" data-id = "${index}">
+    <ul class="todo-list-menu">
+        <li class="todo-item" data-id="${index}">
+            ${todo.name}
+        </li>
+        <div class="icons">
+            <i class="fas fa-times" data-id="${index}"></i>
+            <i class="far fa-check-circle" data-id="${index}"></i>
+        </div>
+    </ul>
+    </div>
+    `)
+    content.innerHTML = result.join('')
+
+    let items = document.querySelectorAll('li')
+    let completeBtns = document.querySelectorAll('.icons i:last-child')
+    let delBtns = document.querySelectorAll('.icons i:first-child')
+    
+    delBtns.forEach(delBtn => {
+        delBtn.onclick = e => {
+            const todoText = items[e.target.dataset.id].innerText
+            todoList = todoList.filter(todo => todo.name !== todoText)
+            localStorage.setItem(TODO_KEY, JSON.stringify(todoList))
+            items[e.target.dataset.id].parentElement.parentElement.classList.add('deleted')
+            items[e.target.dataset.id].parentElement.parentElement.addEventListener('transitionend', function() {
+                render()
+            })
+        }
+    })
+
+    completeBtns.forEach(completeBtn => {
+        completeBtn.onclick = (e) => {
+            todoList[e.target.dataset.id].isCompleted = true;
+            localStorage.setItem(TODO_KEY, JSON.stringify(todoList))
+            isChecked(items)
+        }
+    })
+    isChecked(items)
+
 }
+render()
+addBtn.onclick = () => {
+    localStorage.setItem(TODO_KEY, JSON.stringify(todoList))
+    render()
+}
+
+
+function isChecked(items) {
+    todoList.forEach((todo,index) => {
+        if (todo.isCompleted === true){
+            items[index].classList.add('completed')
+        }
+    })
+}   
