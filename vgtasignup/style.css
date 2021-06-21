@@ -251,6 +251,7 @@ input {
   width: 100%;
   display: block;
   color: #000;
+  margin-bottom: 4px;
 }
 .gifts-card label:nth-of-type(2) {
   background-image: linear-gradient(to right, #D73350, #FC6F69);
@@ -293,12 +294,12 @@ input {
 
   .gifts {
     flex-wrap: wrap;
-    height: auto;
     padding: 16px 48px;
     align-items: stretch;
+    justify-content: center;
   }
   .gifts-card {
-    width: 50%;
+    width: calc(50% - 16px);
     margin-right: 0 !important;
   }
   .gifts-card label {
