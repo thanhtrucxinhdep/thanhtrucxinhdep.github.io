@@ -1,0 +1,100 @@
+.blog {
+    .wrapper{
+        width: 90%;
+        margin: 0 auto;
+        .blog-title{
+            text-align: center;
+            font-size: 3rem;
+            position: relative;
+            &:before{
+                content: '';
+                background-image: url('./image/heading-icon.png');
+                background-repeat: no-repeat;
+                width: 81px;
+                height: 86px;
+                display: inline-block;
+            }
+            h4 {
+                font-family: 'Rancho', sans-serif;
+                color: $brown-color;
+                font-weight: 500;
+                font-size: 4rem;
+                margin: 16px 0;
+            }
+            p {
+                font-size: 1.3rem;
+                color: $grey-color;
+            }
+        }
+        .blog-content{
+            display: flex;
+            align-items: center;
+            margin: 0 -16px;
+            margin-top: 64px;
+            .post {
+                width: 33.333%;
+                padding: 0 16px;
+                
+                .post-image{
+                    border-radius: 10px;
+                    overflow: hidden;
+                    position: relative;
+                    img {
+                        width: 100%;
+                        display: block;
+                    }
+                    .search{
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        background-color: rgba($color: #000000, $alpha: 0.6);  
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        opacity: 0;
+                        transition: all .25s linear;
+                        cursor: pointer;
+                        i {
+                            color: white;
+                            font-size: 4rem;
+                        } 
+                    }
+                    &:hover .search{
+                        opacity: 1;
+                    }
+                }
+                .post-content{
+                    padding-top: 16px;
+                    h4 {
+                        color: $brown-color;
+                        font-size: 3rem;
+                        font-weight: 500;
+                        font-family: 'Rancho', sans-serif;
+                    }
+                    p {
+                        color: $grey-color;
+                        font-size: 1.4rem;
+                    }
+                    p:nth-of-type(1){
+                        margin: 16px 0;
+                    }
+                    a {
+                        background-color: $brown-color;
+                        padding: 8px 24px;
+                        border-radius: 20px;
+                        font-size: 1.5rem;
+                        margin-top: 16px;
+                        transition: all .25s linear;
+                        &:hover{
+                            background-color: $primary-color;
+                            color: black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

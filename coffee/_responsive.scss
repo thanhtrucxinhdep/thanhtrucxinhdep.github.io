@@ -1,0 +1,189 @@
+@media only screen and (max-width: 600px) {
+    .heading-banner-desc {
+        width: 100%;
+        background-color: rgba($color: #000000, $alpha: 0.3);
+        padding: 16px 0;
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+    }
+    .banner-item:nth-of-type(2) .heading-banner-desc,
+    .banner-item:nth-of-type(3) .heading-banner-desc{
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .arrows {
+        display: none !important;
+    }
+    .navbar-mobile {
+        position: relative;
+        width: 90%;
+        margin: 0 auto;
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 1;
+        .navbar-mobile-menu,
+        .navbar-mobile-cart {
+            cursor: pointer;
+            i {
+                font-size: 2rem;
+                color: white;
+            }
+        }
+    }
+    .sidebar {
+        width: 90%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: white;
+        transform: translateX(-100%);
+        transition: all .25s linear;
+        opacity: 0;
+        z-index: 999999;
+        display: block !important;
+        .sidebar-search {
+            border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+            input {
+                font-size: 1.8rem;
+                width: 90%;
+                background-color: transparent;
+                border: 0;
+                outline: none;
+                padding: 8px 16px;
+            }
+        }
+        i {
+            color: black;
+            font-size: 1.8rem;
+        }
+        li {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            a {
+                font-size: 1.3rem;
+                padding: 8px 16px;
+                color: black;
+            }
+        }
+        .sidebar-times {
+            position: absolute;
+            top: 0;
+            right: -12%;
+            background-color: white;
+            width: 13%;
+            text-align: center;
+            cursor: pointer;
+            i {
+                font-size: 4rem;
+            }
+        }
+    }
+    .sidebar.active{
+        transform: translateX(0);
+        opacity: 1;
+    }
+    .heading-cart{
+        width: 85% !important;
+    }
+    .navbar {
+        display: none !important;
+    }
+    .background-1{
+        height: 55vh !important;
+        background-position: top 55px left !important;
+    }
+    .sub-banner{
+        flex-direction: column;
+        padding: 0 !important;
+        height: auto !important;
+        .banner-left{
+            width: 100% !important;
+        }
+        .banner-right{
+            padding: 0 !important;
+            width: 100% !important;
+            margin-top: 48px;
+        }
+    }
+
+    .menu-section{
+        flex-direction: column;
+        height: auto !important;
+        .menu-section-image{
+            width: 100% !important;
+            height: 80vh;
+            &-1{
+                transform: translateX(0);
+            }
+            &-2{
+                width: 80% !important;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        .menu-section-content{
+            margin: 0 !important;
+            padding: 24px 16px;
+            width: 100%;
+            &-drinks{
+                flex-direction: column;
+                width: 100%;
+                &-menu-1{
+                    margin-top: 24px;
+                }
+                &-menu-2{
+                    margin-top: 48px;
+                }
+            }
+        }
+    }
+    .secret-section {
+        height: auto;
+        .secret-section-content{
+            flex-direction: column;
+            padding: 32px 0 120px 0;
+            .secret{
+                width: 100% !important;
+            }
+        }
+    }
+    .coffe-product{
+        height: auto;
+        .product-container{
+            flex-wrap: wrap;
+            .product{
+                width: 50%;
+            }
+        }
+    }
+
+    .blog-content{
+        flex-direction: column;
+        .post {
+            width: 100% !important;
+        }
+        .post + .post {
+            margin-top: 24px;
+        }
+    }
+    .footer {
+        .wrapper {
+            flex-direction: column;
+            > div {
+                width: 100%;
+            }
+            .footer-about {
+                img {
+                    width: 70%;
+                }
+            }
+            .footer-opening{
+                margin: 48px 0;
+            }
+        }
+    }
+  }
